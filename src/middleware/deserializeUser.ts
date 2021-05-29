@@ -15,7 +15,7 @@ const deserializeUser = async (
 
   const refreshToken = get(req, "headers.x-refresh");
 
-  if (!accessToken) return next();
+  if (!accessToken) { return next() };
 
   const { decoded, expired } = decode(accessToken);
 
