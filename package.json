@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:jp-knj/express.git",
-  "author": "jp-knj <kenji.tomita1996@gmail.com>",
+  "author": "jp-knj",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --config nodemon.json src/app.ts"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "config": "^3.3.6",
