@@ -38,17 +38,17 @@ export async function reIssueAccessToken({
   // Decode the refresh token
   const { decoded } = decode(refreshToken);
 
-  if (!decoded || !get(decoded, "_id")) return false;
+  if (!decoded || !get(decoded, "_id")) { return false };
 
   // Get the session
   const session = await Session.findById(get(decoded, "_id"));
 
   // Make sure the session is still valid
-  if (!session || !session?.valid) return false;
+  if (!session || !session?.valid) { return false };
 
   const user = await findUser({ _id: session.user });
 
-  if (!user) return false;
+  if (!user) { return false };
 
   const accessToken = createAccessToken({ user, session });
 

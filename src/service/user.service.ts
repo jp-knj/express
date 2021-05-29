@@ -20,11 +20,11 @@ export async function validatePassword({email,password}: {
 }) {
   const user = await User.findOne({ email });
 
-  if (!user) return false;
+  if (!user) { return false };
 
   const isValid = await user.comparePassword(password);
 
-  if (!isValid) return false;
+  if (!isValid) { return false };
 
   return omit(user.toJSON(), "password");
 }
