@@ -9,6 +9,7 @@ const port = config.get("port") as number;
 const host = config.get("host") as string;
 
 const app = express();
+app.use(deserializeUser);
 
 // Parses incoming requests with JSON payloads
 app.use(express.json());
