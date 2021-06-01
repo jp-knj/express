@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  server:
+    restart: always
+    container_name: restful-api-server
+    environment:
+      - NODE_ENV=production
+    build:
+      context: ./
+    image: url-shortener-server
+    ports:
+      - "4000:4000"
