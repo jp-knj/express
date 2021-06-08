@@ -34,7 +34,7 @@ function URLShortenerForm() {
 
       </form>
       {shortUrl && (
-        <a href={`${SERVER_ENDPOINT}/${shortUrl?.shortId}`}>CLICK ME</a>
+        <a href={`/${shortUrl?.shortId}`}>{window.location.origin}/{shortUrl?.shortId}</a>
       )}
     </Box>
   )
