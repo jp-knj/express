@@ -26,7 +26,6 @@ function URLShortenerForm() {
       />
       <Button type="submit">Create Short URL</Button>
     </form>
-    {JSON.stringify(shortUrl)}
     {shortUrl && (
       <a href={`${SERVER_ENDPOINT}/${shortUrl?.shortId}`}>CLICK ME</a>
     )}
