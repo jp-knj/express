@@ -1,4 +1,4 @@
-import { Input, Button, Box, Heading, InputGroup } from "@chakra-ui/react";
+import { Input, Button, Box } from "@chakra-ui/react";
 import axios from  "axios";
 import React, { useState } from "react";
 import { SERVER_ENDPOINT } from "../config";
@@ -19,17 +19,19 @@ function URLShortenerForm() {
     debugger;
     setShortUrl(result);
   }
-  return <Box pos="relative">
-    <form onSubmit={handleSubmit}>
-      <Input onChange={(e: any) => setDestination(e.target.value)}
-        placeholder="https::example.com"
-      />
-      <Button type="submit">Create Short URL</Button>
-    </form>
-    {shortUrl && (
-      <a href={`${SERVER_ENDPOINT}/${shortUrl?.shortId}`}>CLICK ME</a>
-    )}
-  </Box>
+  return (
+    <Box pos="relative" zIndex="2">
+      <form onSubmit={handleSubmit} >
+        <Input onChange={(e: any) => setDestination(e.target.value)}
+          placeholder="https::example.com"
+        />
+        <Button type="submit">Create Short URL</Button>
+      </form>
+      {shortUrl && (
+        <a href={`${SERVER_ENDPOINT}/${shortUrl?.shortId}`}>CLICK ME</a>
+      )}
+    </Box>
+  )
 }
 
 export default URLShortenerForm;
