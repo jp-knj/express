@@ -53,6 +53,17 @@ export default function (app: Express) {
   // @description get a user
   // @route       POST /api/auth/login
   // @access      Public
+  app.get("/api/users/:id",
+      async (req: Request, res: Response) => {
+      try {
+        const user = await User.findById(req.params.id);
+        const { password, updatedAt, ...other } = user._doc;
+        res.status(200).json(other);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    }
+  );
 
   // @description follow a user
   // @route       POST /api/auth/login
