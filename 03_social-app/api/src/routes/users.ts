@@ -35,6 +35,20 @@ export default function (app: Express) {
   // @description delete user
   // @route       POST /api/auth/login
   // @access      Public
+  app.delete("/api/users/:id",
+    async (req: Request, res: Response) => {
+      if (req.body.userId === req.params.id || req.body.isAdmin) {
+        try {
+          await User.findByIdAndDelete(req.params.id);
+          res.status(200).json("Account has been deleted");
+        } catch (err) {
+          return res.status(500).json(err);
+        }
+      } else {
+        return res.status(403).json("You can delete only your account!");
+      }
+    }
+  );
 
   // @description get a user
   // @route       POST /api/auth/login
