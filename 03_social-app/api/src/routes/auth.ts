@@ -36,7 +36,7 @@ export default function (app: Express) {
   // @route       POST /api/auth/login
   // @access      Public
   app.post("/api/auth/login",
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response): Promise<void> => {
       try {
         const user = await User.findOne({ email: req.body.email });
         !user && res.status(404).json("user not found");
