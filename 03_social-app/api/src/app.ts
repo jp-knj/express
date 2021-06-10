@@ -1,6 +1,8 @@
 import express from "express";
 import config from "config";
 import log from "./logger";
+import users from './routes/users';
+import auth from './routes/auth';
 import connect from "./database/connect";
 
 const port = config.get('port') as number;
@@ -15,4 +17,6 @@ app.listen(port, host, () => {
   console.log(`Server listing at http://${host}:${port}`);
   log.info(`Server listing at http://${host}:${port}`);
   connect();
+  users(app);
+  auth(app);
 });
