@@ -58,7 +58,7 @@ export default function (app: Express) {
   )
 
   // @description like a post
-  // @route       PUT /api/auth/register
+  // @route       PUT /api/posts/:id/like
   // @access      Public
   app.put("/api/posts/:id/like",
     async (req: Request, res: Response) => {
