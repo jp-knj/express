@@ -1,6 +1,7 @@
 import express from "express";
 import config from "config";
 import log from "./logger";
+import posts from './routes/post';
 import users from './routes/users';
 import auth from './routes/auth';
 import connect from "./database/connect";
@@ -19,4 +20,5 @@ app.listen(port, host, () => {
   connect();
   users(app);
   auth(app);
+  posts(app);
 });
