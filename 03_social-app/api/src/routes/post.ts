@@ -20,7 +20,7 @@ export default function (app: Express) {
     }
   )
   // @description update a post
-  // @route       POST /api/auth/register
+  // @route       PUT /api/posts/:id",
   // @access      Public
   app.put("/api/posts/:id",
     async (req: Request, res: Response) => {
@@ -38,13 +38,24 @@ export default function (app: Express) {
     }
   )
 
-  // @description update a post
-  // @route       POST /api/auth/register
-  // @access      Public
-
   // @description delete a post
-  // @route       POST /api/auth/register
+  // @route       Delete /api/posts/:id
   // @access      Public
+  app.delete("/api/posts/:id",
+    async (req: Request, res: Response) => {
+      try {
+        const post = await Post.findById(req.params.id);
+        if (post.userId === req.body.userId) {
+          await post.deleteOne();
+          res.status(200).json("the post have been deleted");
+        } else {
+          res.status(403).json("you can delete only your post")
+        }
+      } catch (e) {
+        res.status(500).json(e);
+      }
+    }
+  )
 
   // @description like a post
   // @route       POST /api/auth/register
