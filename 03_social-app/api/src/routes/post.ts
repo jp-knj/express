@@ -1,7 +1,6 @@
 import { Express, Request, Response } from "express";
 import log from "../logger";
 import Post from "../models/Post";
-import User from "../models/Post";
 
 export default function (app: Express) {
 
@@ -80,6 +79,16 @@ export default function (app: Express) {
   // @description get a post
   // @route       POST /api/auth/register
   // @access      Public
+  app.get("/api/posts/:id/",
+    async (req: Request, res: Response) => {
+      try {
+        const post = await Post.findById(req.params.id);
+        res.status(200).json(post);
+      } catch (e) {
+        res.status(500).json(e);
+      }
+    }
+  )
 
   // @description get timeline posts
   // @route       POST /api/auth/register
