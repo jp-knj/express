@@ -58,8 +58,24 @@ export default function (app: Express) {
   )
 
   // @description like a post
-  // @route       POST /api/auth/register
+  // @route       PUT /api/auth/register
   // @access      Public
+  app.put("/api/posts/:id/like",
+    async (req: Request, res: Response) => {
+      try {
+        const post = await Post.findById(req.params.id);
+        if (!post.likes.includes(req.body.userId)) {
+          await post.updateOne({ $push: { likes: req.body.userId } });
+          res.status(200).json("The Post has been liked")
+        } else {
+          await post.updateOne({ $pull: { likes: req.body.userId } });
+          res.status(200).json("The post has been disliked");
+        }
+      } catch (e) {
+        res.status(500).json(e);
+      }
+    }
+  )
 
   // @description get a post
   // @route       POST /api/auth/register
