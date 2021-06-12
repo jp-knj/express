@@ -1,6 +1,7 @@
 import { Express, Request, Response } from "express";
 import log from "../logger";
 import Post from "../models/Post";
+import User from "../models/User";
 
 export default function (app: Express) {
 
@@ -93,4 +94,20 @@ export default function (app: Express) {
   // @description get timeline posts
   // @route       POST /api/auth/register
   // @access      Public
+  app.get("/api/posts/timeline/all",
+    async (req: Request, res: Response) => {
+      try {
+        const currentUser = await User.findById(req.params.userId);
+        const userPosts = await Post.find({ userId: currentUser._id });
+        const friendPosts = await Promise.all(
+          currentUser.followings.map((friendId: string) => {
+            return Post.find({ userId: friendId });
+          })
+        );
+        res.json(userPosts.concat(...friendPosts))
+      } catch (e) {
+        res.status(500).json(e);
+      }
+    }
+  )
 }
