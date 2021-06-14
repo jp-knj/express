@@ -54,6 +54,12 @@ const Sidebar = () => {
         </ul>
         <button className="sidebar__button">Show More</button>
         <hr className="sidebar__border" />
+        <ul className="friend__list">
+          <li className="friend__item">
+            <img className="friend__image" src="" alt=""/>
+            <span className="friend__name" >Kenji Tomita</span>
+          </li>
+        </ul>
       </div>
     </div>
   );
