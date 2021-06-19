@@ -4,7 +4,7 @@ import { Users } from "../../Data";
 
 
 interface ProfileProps {
-  profile?: React.ReactNode
+  profile?: React.ReactNode;
 }
 
 const Rightbar: React.FC<ProfileProps>= (profile) => {
