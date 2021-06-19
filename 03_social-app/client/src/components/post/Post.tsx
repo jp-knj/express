@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MoreVert } from "@material-ui/icons";
 import { Users } from "../../Data";
 import "./post.css";
@@ -13,6 +14,13 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = (post) => {
+  const [like, setLike] = useState<number>(post.like);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+
+  const likeHandler = () => {
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  }
   return (
     <div className="post">
       <div className="post__container">
@@ -32,9 +40,9 @@ const Post: React.FC<PostProps> = (post) => {
         </div>
         <div className="post__footer">
           <div className="post__append">
-            <img className="likeIcon" src="assets/like.png" alt="" />
+            <img className="likeIcon" src="assets/like.png" alt="" onClick={likeHandler}/>
             <img className="likeIcon" src="assets/heart.png" alt="" />
-            <span className="post__likeCounter">{post.like} people like it</span>
+            <span className="post__likeCounter">{like} people like it</span>
           </div>
           <div className="post__append">
             <span className="post__comment">{post.comment} Comments</span>
