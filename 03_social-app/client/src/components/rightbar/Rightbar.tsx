@@ -1,5 +1,6 @@
 import "./rightbar.css";
 import Online from "../online/Online";
+import { Users } from "../../Data";
 
 export default function Rightbar() {
   return (
@@ -14,7 +15,11 @@ export default function Rightbar() {
         <img className="rightbar__ad" src="assets/ad.png" alt="" />
         <h4 className="rightbar__title">Online Friends</h4>
         <ul className="rightbar__friendList">
-          <Online/>
+          {
+            Users.map(u => (
+              <Online key={u.id} {...u} />
+            ))
+          }
         </ul>
       </div>
     </div>
