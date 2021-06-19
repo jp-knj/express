@@ -10,7 +10,7 @@ const Feed = () => {
       <div className="feed__container">
         <Share />
         {Posts.map((p) => (
-          <Post key={p.id} desc={p.desc} photo={p.photo} date={p.photo} like={p.like} comment={p.comment}/>
+          <Post key={p.id} {...p}/>
         ))}
       </div>
     </div>
