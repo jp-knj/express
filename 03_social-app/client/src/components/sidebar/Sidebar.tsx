@@ -1,4 +1,3 @@
-import "./sidebar.css";
 import {
   RssFeed,
   Chat,
@@ -10,6 +9,11 @@ import {
   Event,
   School,
 } from "@material-ui/icons";
+
+import "./sidebar.css";
+import Friend from "../friend/Friend";
+import { Users } from "../../Data";
+
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -55,10 +59,11 @@ const Sidebar = () => {
         <button className="sidebar__button">Show More</button>
         <hr className="sidebar__border" />
         <ul className="friend__list">
-          <li className="friend__item">
-            <img className="friend__image" src="" alt=""/>
-            <span className="friend__name" >Kenji Tomita</span>
-          </li>
+          {
+            Users.map((u) => (
+            <Friend key={u.id} {...u} />
+            ))
+          }
         </ul>
       </div>
     </div>

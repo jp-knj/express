@@ -1,7 +1,6 @@
 import Share from "../share/Share";
 import Post from "../post/Post";
 import "./feed.css";
-
 import { Posts } from "../../Data";
 
 const Feed = () => {
