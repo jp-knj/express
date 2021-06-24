@@ -92,6 +92,7 @@ export default function (app: Express) {
   )
 
   // @description get timeline posts
+<<<<<<< HEAD
   // @route       POST /api/posts/profile/:username
   // @access      Public
   app.get("/api/profile/:username",
@@ -100,11 +101,27 @@ export default function (app: Express) {
         const user = await User.findOne({ username: req.params.username });
         const posts = await Post.find({ userId: user._id})
         res.status(200).json(posts);
+=======
+  // @route       POST /api/auth/register
+  // @access      Public
+  app.get("/api/posts/timeline/all",
+    async (req: Request, res: Response) => {
+      try {
+        const currentUser = await User.findById(req.params.userId);
+        const userPosts = await Post.find({ userId: currentUser._id });
+        const friendPosts = await Promise.all(
+          currentUser.followings.map((friendId: string) => {
+            return Post.find({ userId: friendId });
+          })
+        );
+        res.json(userPosts.concat(...friendPosts))
+>>>>>>> 56e06f1303ed22ec5de921ceeb6da874db05b45c
       } catch (e) {
         res.status(500).json(e);
       }
     }
   )
+<<<<<<< HEAD
   // app.get("/api/timeline/:user",
   //   async (req: Request, res: Response) => {
   //     try {
@@ -116,4 +133,6 @@ export default function (app: Express) {
   //     }
   //   }
   // )
+=======
+>>>>>>> 56e06f1303ed22ec5de921ceeb6da874db05b45c
 }
