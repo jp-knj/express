@@ -10,10 +10,10 @@ const app = express();
 
 // app.use(cookieParser());
 
-// const GITHUB_CLIENT_ID = "";
-// const GITHUB_CLIENT_SECRET = "";
-// const secret = "shhhhhhhhhhhh";
-// const COOKIE_NAME = "github-jwt";
+const GITHUB_CLIENT_ID = "";
+const GITHUB_CLIENT_SECRET = "";
+const secret = "shhhhhhhhhhhh";
+const COOKIE_NAME = "github-jwt";
 
 // app.use(
 //   cors({
