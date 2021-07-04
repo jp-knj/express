@@ -22,4 +22,8 @@ export function createSessionHandler(req: Request, res: Response) {
 }
 
 // get the session
+export function getSessionHandler(req: Request, res: Response) {
+  //@ts-ignore
+  return res.send(req.user);
+}
 // logout handler
