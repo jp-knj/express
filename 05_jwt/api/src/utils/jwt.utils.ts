@@ -46,6 +46,8 @@ jg/3747WSsf/zBTcHihTRBdAv6OmdhV4/dD5YBfLAkLrd+mX7iE=
 export function signJWT(payload: object, expiresIn: string | number) {
   return jwt.sign(payload, privateKey, { algorithm: "RS256", expiresIn });
 }
+
+// verify jwt
 export function verifyJWT(token: string) {
   try {
     const decoded = jwt.verify(token, publicKey);

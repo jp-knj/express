@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { getUser } from "../db";
+import { signJWT, verifyJWT } from "../utils/jwt.utils";
 // login handler
 export function createSessionHandler(req: Request, res: Response) {
   const { email, password } = req.body;
@@ -9,8 +10,15 @@ export function createSessionHandler(req: Request, res: Response) {
   }
 
   // create access token
+  const accessToken = signJWT({ email: user.email, name: user.name }, "1h");
+
   // set access token
+  res.cookie("accessToken", accessToken, {
+    maxAge: 300000,
+    httpOnly: true,
+  });
   // send user back
+  res.send(verifyJWT(accessToken).payload);
 }
 
 // get the session

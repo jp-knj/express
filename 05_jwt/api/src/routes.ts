@@ -1,11 +1,9 @@
 import { Express } from "express";
+import { createSessionHandler } from "./controller/session.controller";
 
-function routes(app: Express) {
+function route(app: Express) {
   // login
-  app.post("api/session", createSessionHandler);
-  // get current user
-
-  // logout
+  app.post("/api/session", createSessionHandler);
 }
 
-export default routes;
+export default route;
