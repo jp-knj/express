@@ -15,7 +15,9 @@ async function getGithubUser({ code }: { code: string }) {
     .post(
       `https://github.com/login/oauth/access_token?client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_CLIENT_SECRET}&code=${code}`
     )
+
     .then((res) => res.data)
+
     .catch((error) => {
       throw error;
     });
@@ -28,7 +30,7 @@ async function getGithubUser({ code }: { code: string }) {
     })
     .then((res) => res.data)
     .catch((error) => {
-      console.log(`Error getting user from Github`);
+      console.error(`Error getting user from Github`);
       throw error;
     });
 }
