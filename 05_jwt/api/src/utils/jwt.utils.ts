@@ -46,3 +46,14 @@ jg/3747WSsf/zBTcHihTRBdAv6OmdhV4/dD5YBfLAkLrd+mX7iE=
 export function signJWT(payload: object, expiresIn: string | number) {
   return jwt.sign(payload, privateKey, { algorithm: "RS256", expiresIn });
 }
+export function verifyJWT(token: string) {
+  try {
+    const decoded = jwt.verify(token, publicKey);
+    return { payload: decoded, expired: false };
+  } catch (e) {
+    return {
+      payload: null,
+      expired: e.message.include("Json Web Token expired"),
+    };
+  }
+}
